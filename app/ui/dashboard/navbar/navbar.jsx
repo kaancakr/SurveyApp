@@ -10,6 +10,14 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.title}>{pathname.split("/").pop()}</div>
       <div className={styles.menu}>
+        <div className={styles.icons}>
+          <button className={styles.darkModeButton}>
+            <MdIcons.MdDarkMode size={25} />
+          </button>
+          <button className={styles.lightModeButton}>
+            <MdIcons.MdSunny size={25}/>
+          </button>
+        </div>
         <div className={styles.search}>
           <MdIcons.MdSearch />
           <input type="text" placeholder="Search..." className={styles.input} />

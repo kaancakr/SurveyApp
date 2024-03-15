@@ -46,7 +46,7 @@ const menuItems = [
     list: [
       {
         title: "Profile",
-        path: "/dashboard/users",
+        path: "/dashboard/profile",
         icon: <MdIcons.MdSupervisedUserCircle />,
       },
       {

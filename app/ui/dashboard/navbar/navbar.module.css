@@ -38,3 +38,18 @@
     display: flex;
     gap: 20px;
 }
+
+.darkModeButton {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.lightModeButton {
+    border: none;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    display: none;
+}
