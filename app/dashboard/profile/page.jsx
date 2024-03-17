@@ -1,3 +1,4 @@
+import { deleteUser } from "@/app/lib/actions";
 import { fetchUsers } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/profile/profile.module.css";
 import Link from "next/link";
@@ -31,7 +32,7 @@ const ProfilePage = async () => {
                       View
                     </button>
                   </Link>
-                  <form action="">
+                  <form action={deleteUser}>
                     <input type="hidden" name="id" value={user.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete

@@ -1,5 +1,5 @@
 
-import styles from "@/app/ui/dashboard/products/addSurvey/addSurvey.module.css";
+import styles from "@/app/ui/dashboard/surveys/addSurvey/addSurvey.module.css";
 
 const AddSurveyPage = () => {
   return (

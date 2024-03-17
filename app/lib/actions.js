@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Product, User } from "./models";
+import { Surveys, User } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
@@ -10,7 +10,6 @@ import { signIn } from "../auth";
 export const addUser = async (formData) => {
   const { username, email, password, phone, address } =
     Object.fromEntries(formData);
-  console.log(formData);
   try {
     connectToDB();
 
@@ -61,50 +60,46 @@ export const updateUser = async (formData) => {
     throw new Error("Failed to update user!");
   }
 
-  revalidatePath("/dashboard/users");
-  redirect("/dashboard/users");
+  revalidatePath("/dashboard/profile");
+  redirect("/dashboard/profile");
 };
 
-export const addProduct = async (formData) => {
-  const { title, desc, price, stock, color, size } =
+export const addSurvey = async (formData) => {
+  const { name, summary, owner, ageRange } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
-    const newProduct = new Product({
-      title,
-      desc,
-      price,
-      stock,
-      color,
-      size,
+    const newSurvey = new Surveys({
+      name,
+      summary,
+      owner,
+      ageRange,
     });
 
-    await newProduct.save();
+    await newSurvey.save();
   } catch (err) {
     console.log(err);
     throw new Error("Failed to create product!");
   }
 
-  revalidatePath("/dashboard/products");
-  redirect("/dashboard/products");
+  revalidatePath("/dashboard/surveys");
+  redirect("/dashboard/surveys");
 };
 
-export const updateProduct = async (formData) => {
-  const { id, title, desc, price, stock, color, size } =
+export const updateSurvey = async (formData) => {
+  const { id, name, summary, owner, ageRange } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const updateFields = {
-      title,
-      desc,
-      price,
-      stock,
-      color,
-      size,
+      name,
+      summary,
+      owner,
+      ageRange,
     };
 
     Object.keys(updateFields).forEach(
@@ -112,14 +107,14 @@ export const updateProduct = async (formData) => {
         (updateFields[key] === "" || undefined) && delete updateFields[key]
     );
 
-    await Product.findByIdAndUpdate(id, updateFields);
+    await Surveys.findByIdAndUpdate(id, updateFields);
   } catch (err) {
     console.log(err);
     throw new Error("Failed to update product!");
   }
 
-  revalidatePath("/dashboard/products");
-  redirect("/dashboard/products");
+  revalidatePath("/dashboard/surveys");
+  redirect("/dashboard/surveys");
 };
 
 export const deleteUser = async (formData) => {
@@ -141,16 +136,16 @@ export const deleteProduct = async (formData) => {
 
   try {
     connectToDB();
-    await Product.findByIdAndDelete(id);
+    await Surveys.findByIdAndDelete(id);
   } catch (err) {
     console.log(err);
     throw new Error("Failed to delete product!");
   }
 
-  revalidatePath("/dashboard/products");
+  revalidatePath("/dashboard/surveys");
 };
 
-export const authenticate = async (prevState, formData) => {
+export const authenticate = async (formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {
