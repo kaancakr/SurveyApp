@@ -15,6 +15,18 @@ export const fetchUsers = async (q) => {
   }
 };
 
+export const fetchUser = async (id) => {
+  console.log(id);
+  try {
+    connectToDB();
+    const user = await User.findById(id);
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch user!");
+  }
+};
+
 export const fetchSurveys = async (q, page) => {
   const regex = new RegExp(q, "i");
 

@@ -1,9 +1,11 @@
-"use client";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
 import * as MdIcons from "react-icons/md";
+import { auth, signOut } from "@/app/auth";
 
 import Image from "next/image";
+import { fetchUsers } from "@/app/lib/data";
+import copyUserId from "../../userIdCopy/userId";
 
 const menuItems = [
   {
@@ -63,15 +65,9 @@ const menuItems = [
   },
 ];
 
-const Sidebar = () => {
-  const copyUserId = () => {
-    const userIdElement = document.getElementById("userId"); // Get the element containing the user ID
-    const userId = userIdElement.innerText; // Get the text content of the element
-    navigator.clipboard.writeText(userId); // Copy the text to the clipboard
-    alert("ID copied to clipboard: " + userId);
-  };
-
-  const userId = 123456789
+const Sidebar = async () => {
+  const { user } = await auth();
+  const user2 = await fetchUsers();
 
   return (
     <div className={styles.container}>
@@ -97,10 +93,17 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
-      <button className={styles.logout}>
-        <MdIcons.MdLogout />
-        Logout
-      </button>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button className={styles.logout}>
+          <MdIcons.MdLogout />
+          Logout
+        </button>
+      </form>
       <div className={styles.user}>
         <Image
           className={styles.userImage}
@@ -111,7 +114,7 @@ const Sidebar = () => {
         />
         <div className={styles.userInfo}>
           <div className={styles.userDetail}>
-            <span className={styles.username}>Kaan Cakir</span>
+            <span className={styles.username}>{user.username.toUpperCase()}</span>
           </div>
           <div className={styles.icons}>
             <MdIcons.MdInfo size={20} />
@@ -122,7 +125,7 @@ const Sidebar = () => {
       <div className={styles.idSection}>
         <div className={styles.userId}>
           <span>ID: </span>
-          <span id="userId">{userId}</span>
+          <span id="userId">{user2[0].id}</span>
         </div>
         <button onClick={copyUserId} className={styles.copyIdButton}><MdIcons.MdContentCopy size={20}/></button>
       </div>

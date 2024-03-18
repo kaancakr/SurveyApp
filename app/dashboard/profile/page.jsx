@@ -13,6 +13,7 @@ const ProfilePage = async () => {
           <tr>
             <td>Name</td>
             <td>Email</td>
+            <td>ID</td>
             <td>Action</td>
           </tr>
         </thead>
@@ -25,6 +26,7 @@ const ProfilePage = async () => {
                 </div>
               </td>
               <td>{user.email}</td>
+              <td>{user.id}</td>
               <td>
                 <div className={styles.buttons}>
                   <Link href={`/dashboard/profile/${user.id}`}>

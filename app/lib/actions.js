@@ -145,15 +145,12 @@ export const deleteProduct = async (formData) => {
   revalidatePath("/dashboard/surveys");
 };
 
-export const authenticate = async (formData) => {
+export const authenticate = async (previousState, formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {
     await signIn("credentials", { username, password });
   } catch (err) {
-    if (err.message.includes("CredentialsSignin")) {
-      return "Wrong Credentials";
-    }
-    throw err;
+    return "Wrong Credentials!";
   }
 };
