@@ -4,70 +4,70 @@ import * as MdIcons from "react-icons/md";
 import { auth, signOut } from "@/app/auth";
 
 import Image from "next/image";
-import { fetchUsers } from "@/app/lib/data";
 import copyUserId from "../../userIdCopy/userId";
-
-const menuItems = [
-  {
-    title: "",
-    list: [
-      {
-        title: "Ana Sayfa",
-        path: "/dashboard",
-        icon: <MdIcons.MdDashboard />,
-      },
-    ],
-  },
-  {
-    title: "Araştırmalar",
-    list: [
-      {
-        title: "Katıldığım Araştırmalar",
-        path: "/dashboard/surveys",
-        icon: <MdIcons.MdShoppingBag />,
-      },
-      {
-        title: "Katılabileceğim Araştırmalar",
-        path: "/dashboard/surveysplus",
-        icon: <MdIcons.MdNote />,
-      },
-    ],
-  },
-  {
-    title: "Finans",
-    list: [
-      {
-        title: "Ödemeler",
-        path: "/dashboard/transactions",
-        icon: <MdIcons.MdMonetizationOn />,
-      },
-    ],
-  },
-  {
-    title: "User",
-    list: [
-      {
-        title: "Profile",
-        path: "/dashboard/profile",
-        icon: <MdIcons.MdSupervisedUserCircle />,
-      },
-      {
-        title: "Settings",
-        path: "/dashboard/settings",
-        icon: <MdIcons.MdOutlineSettings />,
-      },
-      {
-        title: "Help",
-        path: "/dashboard/help",
-        icon: <MdIcons.MdHelpCenter />,
-      },
-    ],
-  },
-];
 
 const Sidebar = async () => {
   const { user } = await auth();
-  const user2 = await fetchUsers();
+
+  const menuItems = [
+    {
+      title: "",
+      list: [
+        {
+          title: "Ana Sayfa",
+          path: "/dashboard",
+          icon: <MdIcons.MdDashboard />,
+        },
+      ],
+    },
+    {
+      title: "Araştırmalar",
+      list: [
+        {
+          title: "Katıldığım Araştırmalar",
+          path: "/dashboard/surveys",
+          icon: <MdIcons.MdShoppingBag />,
+        },
+        {
+          title: "Katılabileceğim Araştırmalar",
+          path: "/dashboard/surveysplus",
+          icon: <MdIcons.MdNote />,
+        },
+      ],
+    },
+    {
+      title: "Finans",
+      list: [
+        {
+          title: "Ödemeler",
+          path: "/dashboard/transactions",
+          icon: <MdIcons.MdMonetizationOn />,
+        },
+      ],
+    },
+    {
+      title: "User",
+      list: [
+        {
+          title: "Profile",
+          path: `/dashboard/profile/${user.id}`,
+          icon: <MdIcons.MdSupervisedUserCircle />,
+        },
+        {
+          title: "Settings",
+          path: "/dashboard/settings",
+          icon: <MdIcons.MdOutlineSettings />,
+        },
+        {
+          title: "Help",
+          path: "/dashboard/help",
+          icon: <MdIcons.MdHelpCenter />,
+        },
+      ],
+    },
+  ];
+
+  
 
   return (
     <div className={styles.container}>
@@ -125,7 +125,7 @@ const Sidebar = async () => {
       <div className={styles.idSection}>
         <div className={styles.userId}>
           <span>ID: </span>
-          <span id="userId">{user2[0].id}</span>
+          <span id="userId">{user.id}</span>
         </div>
         <button onClick={copyUserId} className={styles.copyIdButton}><MdIcons.MdContentCopy size={20}/></button>
       </div>

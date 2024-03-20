@@ -1,10 +1,11 @@
 import { deleteUser } from "@/app/lib/actions";
-import { fetchUsers } from "@/app/lib/data";
+import { fetchUser } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/profile/profile.module.css";
 import Link from "next/link";
 
-const ProfilePage = async () => {
-  const user = await fetchUsers();
+const ProfilePage = async ({params}) => {
+  const { id } = params;
+  const user = await fetchUser(id);
 
   return (
     <div className={styles.container}>

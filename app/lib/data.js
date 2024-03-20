@@ -16,7 +16,6 @@ export const fetchUsers = async (q) => {
 };
 
 export const fetchUser = async (id) => {
-  console.log(id);
   try {
     connectToDB();
     const user = await User.findById(id);
