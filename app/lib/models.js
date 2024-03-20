@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema(
     address: {
       type: String,
     },
+    birthday: {
+      type: Date,
+      required: true,
+    }
   },
   { timestamps: true }
 );

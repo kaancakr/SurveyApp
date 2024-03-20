@@ -67,7 +67,9 @@ const Sidebar = async () => {
     },
   ];
 
-  
+  const username = user.username;
+  const capitalizedUsername =
+    username.charAt(0).toUpperCase() + username.slice(1);
 
   return (
     <div className={styles.container}>
@@ -114,7 +116,9 @@ const Sidebar = async () => {
         />
         <div className={styles.userInfo}>
           <div className={styles.userDetail}>
-            <span className={styles.username}>{user.username.toUpperCase()}</span>
+            <span className={styles.username}>
+              {capitalizedUsername}
+            </span>
           </div>
           <div className={styles.icons}>
             <MdIcons.MdInfo size={20} />
@@ -127,7 +131,9 @@ const Sidebar = async () => {
           <span>ID: </span>
           <span id="userId">{user.id}</span>
         </div>
-        <button onClick={copyUserId} className={styles.copyIdButton}><MdIcons.MdContentCopy size={20}/></button>
+        <button onClick={copyUserId} className={styles.copyIdButton}>
+          <MdIcons.MdContentCopy size={20} />
+        </button>
       </div>
     </div>
   );

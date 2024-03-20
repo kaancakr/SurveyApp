@@ -29,6 +29,8 @@ const SingleUserPage = async ({ params }) => {
           <input type="text" name="phone" placeholder={user.phone} />
           <label>Address</label>
           <textarea type="text" name="address" placeholder={user.address} />
+          <label>Birthday</label>
+          <input type="date" name="birthday" value={user.birthday} />
           <button>Update</button>
         </form>
       </div>
