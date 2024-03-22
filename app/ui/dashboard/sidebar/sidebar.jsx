@@ -30,7 +30,7 @@ const Sidebar = async () => {
         },
         {
           title: "Katılabileceğim Araştırmalar",
-          path: "/dashboard/surveysplus",
+          path: "/dashboard/surveys+",
           icon: <MdIcons.MdNote />,
         },
       ],
