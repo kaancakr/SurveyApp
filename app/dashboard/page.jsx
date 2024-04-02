@@ -9,9 +9,9 @@ const Dashboard = () => {
     <div className={styles.wrapper}>
       <div className={styles.main}>
         <div className={styles.cards}>
-          <Card />
-          <Card />
-          <Card />
+          <Card num={1200} percentage={12} />
+          <Card num={1356} percentage={17}/>
+          <Card num={842} percentage={3}/>
         </div>
         <Transactions />
         <Chart />

@@ -30,8 +30,8 @@ export const addUser = async (formData) => {
     throw new Error("Failed to create user!");
   }
 
-  revalidatePath("/dashboard/profile");
-  redirect("/dashboard/profile");
+  revalidatePath("/login");
+  redirect("/login");
 };
 
 export const updateUser = async (formData) => {

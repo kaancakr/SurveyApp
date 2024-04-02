@@ -45,8 +45,6 @@ const RegisterPage = () => {
           rows="16"
           placeholder="Address"
         ></textarea>
-        <input type="text" placeholder="ID" name="id" value={uniqueId} required />
-        <input type="date" placeholder="Birthday" name="birthday" required />
         <button type="submit">Submit</button>
       </form>
     </div>
